@@ -61,3 +61,7 @@ experiment = Vanderbilt(robot_ip, simulation, demo_number, mature, withUpdate)
 experiment.help_setup()     # Optional, helps to setup the physical environment
 experiment.start()
 ```
+
+# Changes
+
+This repository integrates support for OpenCV 3.3+
