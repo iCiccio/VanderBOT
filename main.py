@@ -6,8 +6,8 @@ Main module that starts the VanderBOT experiment.
 
 
 def main():
-    robot_ip = "192.168.1.100"
-    experiment = Vanderbilt(robot_ip=robot_ip, simulation=False, demo_number=6, mature=True, withUpdate=True)
+    robot_ip = "pepper.local"
+    experiment = Vanderbilt(robot_ip=robot_ip, simulation=True, demo_number=2, mature=True, withUpdate=True)
     experiment.help_setup()
     experiment.start()
 

@@ -4,7 +4,7 @@ import cv2
 
 from trainingData import TrainingData
 
-MODEL_FILE = ".\\classifiers\\robotvision.yml"
+MODEL_FILE = "./classifiers/robotvision.yml"
 
 """
 Methods included in this file manage the face recognition algorithms.
@@ -22,19 +22,19 @@ ALGORITHM_NUMBER = 2
 def model_initialize(model_number, withTreshold=False, threshold=100.0):
     if model_number == 0:
         if withTreshold:
-            return cv2.face.createEigenFaceRecognizer(threshold=threshold)
+            return cv2.face.EigenFaceRecognizer_create(threshold=threshold)
         else:
-            return cv2.face.createEigenFaceRecognizer()
+            return cv2.face.EigenFaceRecognizer_create()
     elif model_number == 1:
         if withTreshold:
-            return cv2.face.createFisherFaceRecognizer(threshold=threshold)
+            return cv2.face.FisherFaceRecognizer_create(threshold=threshold)
         else:
-            return cv2.face.createFisherFaceRecognizer()
+            return cv2.face.FisherFaceRecognizer_create()
     elif model_number == 2:
         if withTreshold:
-            return cv2.face.createLBPHFaceRecognizer(threshold=threshold)
+            return cv2.face.LBPHFaceRecognizer_create(threshold=threshold)
         else:
-            return cv2.face.createLBPHFaceRecognizer()
+            return cv2.face.LBPHFaceRecognizer_create()
     else:
         print "[ERROR] Invalid algorithm selected: " + str(ALGORITHM_NUMBER)
         quit()
@@ -73,19 +73,23 @@ def recognition_train(data):
 # Loads the selected model and does a prediction.
 # Threshold regulates the unknown informant detection
 # I assume frame is already been cropped, resized and converted to greyscale
+# changelog: In openCV 3.3 has moved load() and save(). load() is replaced with read()
+# and save() is replaced with write()
 def recognition_predict(frame):
     model = model_initialize(ALGORITHM_NUMBER, withTreshold=True)
-    model.load(MODEL_FILE)
+    model.read(MODEL_FILE)
     [predicted_label, predicted_confidence] = model.predict(frame)
     # Returns class name
     return predicted_label
 
 
 # Updates the model with new training data
+# changelog: In openCV 3.3 has moved load() and save(). load() is replaced with read()
+# and save() is replaced with write()
 def recognition_update(new_data):
     if isinstance(new_data, TrainingData):
         model = model_initialize(ALGORITHM_NUMBER, withTreshold=False)
-        model.load(MODEL_FILE)
+        model.read(MODEL_FILE)
         model.update(new_data.images, new_data.labels)
         # Cleares up previous models
         if os.path.exists(MODEL_FILE):

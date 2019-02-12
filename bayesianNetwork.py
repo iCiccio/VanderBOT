@@ -169,7 +169,7 @@ class BeliefNetwork:
         return episodic_bn
 
     # Saves the BN's dataset for future reconstruction
-    def save(self, path=".\\datasets\\"):
+    def save(self, path="./datasets/"):
         if not os.path.isdir(path):
             os.makedirs(path)
         self.dataset.save(path + self.name + ".csv")

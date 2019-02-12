@@ -22,6 +22,8 @@ class SimulatedRobot(Robot):
         self.load_time()
         # Adds the landmark position to the simulation
         self.landmark_position = 'A'
+        self.cam = cv2.VideoCapture(0)  # 0 -> index of camera
+
 
     # Disables functions not runnable in simulation
 
@@ -58,25 +60,24 @@ class SimulatedRobot(Robot):
 
     def get_camera_image(self):
         image = np.zeros((480, 640, 3), np.uint8)
-        cam = cv2.VideoCapture(0)  # 0 -> index of camera
-        success, img = cam.read()
+        success, img = self.cam.read()
         if success:  # frame captured without any errors
             return img
         else:
-            return None
+            return np.zeros((480, 640, 3), np.uint8)
 
     # Includes a visual debug screen
     def collect_face_frames(self, number):
         face_frames = []
         found_faces = 0
+
         while found_faces < number:
             image = self.get_camera_image()
             detected, roi = self.detect_face(image, grayscale=True)
             if detected:
                 found_faces += 1
                 face_frames.append(roi)
-            cv2.putText(image, str("Detected: " + str(found_faces) + " / " + str(number)),
-                        (0, 20), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 255), 2)
+            cv2.putText(image, str("Detected: " + str(found_faces) + " / " + str(number)), (0, 20), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 255), 2)
             cv2.imshow("Robot Eyes", image)
             cv2.waitKey(1)
         cv2.destroyAllWindows()

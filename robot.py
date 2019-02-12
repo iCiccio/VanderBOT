@@ -299,7 +299,7 @@ class Robot:
         times.append([1.76])
         keys.append([-0.244346])
         try:
-            self.motion_service.angleInterpolation(names, keys, times, True);
+            self.motion_service.angleInterpolation(names, keys, times, True)
         except BaseException, err:
             print err
 
@@ -315,7 +315,7 @@ class Robot:
         times.append([1.76])
         keys.append([0.403171])
         try:
-            self.motion_service.angleInterpolation(names, keys, times, True);
+            self.motion_service.angleInterpolation(names, keys, times, True)
         except BaseException, err:
             print err
 
@@ -331,7 +331,7 @@ class Robot:
         times.append([2.40000])
         keys.append([-0.00618])
         try:
-            self.motion_service.angleInterpolation(names, keys, times, True);
+            self.motion_service.angleInterpolation(names, keys, times, True)
         except BaseException, err:
             print err
 
@@ -408,13 +408,13 @@ class Robot:
 
     # Saves the beliefs
     def save_beliefs(self):
-        if not os.path.exists(".\\datasets"):
-            os.makedirs(".\\datasets")
+        if not os.path.exists("./datasets"):
+            os.makedirs("./datasets")
         for belief in self.beliefs:
             belief.save()
 
     # Loads the beliefs
-    def load_beliefs(self, path=".\\datasets\\"):
+    def load_beliefs(self, path="./datasets/"):
         # Resets previous beliefs
         self.beliefs = []
         i = 0
