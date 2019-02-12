@@ -23,7 +23,8 @@ This code runs on Python 2.7. In addition, the following libraries are required:
 | ------ | ------ |
 | Numpy | https://github.com/numpy/numpy.git |
 | Bayesian Belief Networks | https://github.com/samvinanzi/bayesian-belief-networks.git |
-| OpenCV2 with "face" extra module | https://github.com/opencv/opencv_contrib.git |
+| OpenCV version 4.0.1 | https://github.com/opencv/opencv.git |
+| OpenCV Contrib version 4.0.1 | https://github.com/opencv/opencv_contrib.git |
 | qi | https://github.com/aldebaran/libqi.git |
 
 This software can operate in a simulated virtual environment, provided a camera is connected to the computer at runtime, but for best results a SoftBank robot (Nao or Pepper, for example) of latest generation is recommended.
