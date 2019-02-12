@@ -409,8 +409,8 @@ class Robot:
 
     # Saves the beliefs
     def save_beliefs(self):
-        if not os.path.exists("./datasets"):
-            os.makedirs("./datasets")
+        if not os.path.exists("./datasets/"):
+            os.makedirs("./datasets/")
         for belief in self.beliefs:
             belief.save()
 
