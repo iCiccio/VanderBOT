@@ -1,3 +1,4 @@
+from __future__ import print_function
 from faceRecognition import *
 from robot import Robot
 import numpy as np
@@ -22,39 +23,40 @@ class SimulatedRobot(Robot):
         self.load_time()
         # Adds the landmark position to the simulation
         self.landmark_position = 'A'
+
         self.cam = cv2.VideoCapture(0)  # 0 -> index of camera
 
 
     # Disables functions not runnable in simulation
 
     def service_setup(self):
-        print "proxy_setup: method not available for the simulated robot."
+        print("proxy_setup: method not available for the simulated robot.")
 
     def set_face_tracking(self, enabled, face_width=0.5):
-        print "set_face_tracking: method not available for the simulated robot."
+        print ("set_face_tracking: method not available for the simulated robot.")
 
     def set_led_color(self, color, speed=0.5):
-        print "set_led_color: method not available for the simulated robot."
+        print ("set_led_color: method not available for the simulated robot.")
 
     def landmark_detect(self):
-        print "landmark_detect: method not available for the simulated robot."
+        print ("landmark_detect: method not available for the simulated robot.")
 
     # Descriptive postural and movement methods
 
     def look_A(self):
-        print "{Robot is looking at box A}"
+        print ("{Robot is looking at box A}")
 
     def look_B(self):
-        print "{Robot is looking at box B}"
+        print ("{Robot is looking at box B}")
 
     def look_forward(self):
-        print "{Robot is looking forward}"
+        print ("{Robot is looking forward}")
 
     def standup(self):
-        print "{Robot is standing up}"
+        print ("{Robot is standing up}")
 
     def sitdown(self):
-        print "{Robot is sitting down}"
+        print ("{Robot is sitting down}")
 
     # Working, redefined methods
 
@@ -86,20 +88,20 @@ class SimulatedRobot(Robot):
     # Input: A or B
     def look_for_landmark(self, side):
         if side != "A" and side != "B":
-            print "[ERROR] look_for_landmark: invalid input " + str(side)
+            print("[ERROR] look_for_landmark: invalid input " + str(side))
             quit()
         if side == "A":
             self.look_A()
         else:
             self.look_B()
         result = True if side == self.landmark_position else False
-        print "{Sticker " + ("found" if result else "not found") + "}"
+        print("{Sticker " + ("found" if result else "not found") + "}")
         self.look_forward()
         return result
 
     def set_landmark_position(self, position):
         if position != 'left' and position != 'right':
-            print "[ERROR] set_landmark_position: invalid input " + str(position)
+            print("[ERROR] set_landmark_position: invalid input " + str(position))
             quit()
         else:
             if position == "left":
@@ -108,7 +110,7 @@ class SimulatedRobot(Robot):
                 self.landmark_position = 'B'
 
     def say(self, words):
-        print "[ROBOT SAYS] " + words
+        print("[ROBOT SAYS] " + words)
 
     def listen_for_words(self, vocabulary):
         while True:
@@ -126,5 +128,5 @@ class SimulatedRobot(Robot):
         elif side == vocabulary[1]:
             return "B"
         else:
-            print "[ERROR] listen_for_side: invalid input: " + str(side)
+            print("[ERROR] listen_for_side: invalid input: " + str(side))
             quit()

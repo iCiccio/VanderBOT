@@ -1,3 +1,4 @@
+from __future__ import print_function
 import copy
 import os
 from math import log
@@ -145,12 +146,12 @@ class BeliefNetwork:
             self.build()
             self.calculate_pdf()
         else:
-            print "[ERROR] update_belief: new data is not an Episode instance."
+            print("[ERROR] update_belief: new data is not an Episode instance.")
             quit(-1)
 
     # Prints the network parameters
     def print_parameters(self):
-        print self.name + "\n" + str(self.parameters)
+        print(self.name + "\n" + str(self.parameters))
 
     # Gets the raw input dataset of the BN
     def get_episode_dataset(self):
@@ -190,7 +191,7 @@ class BeliefNetwork:
             elif item == [1, 1, 1, 0]:
                 self.pdf['lie_b'] += 1.0
             else:
-                print "[ERROR] invalid dataset item not counted: " + str(item)
+                print("[ERROR] invalid dataset item not counted: " + str(item))
         for key in self.pdf:
             self.pdf[key] /= n
 
@@ -255,7 +256,7 @@ class BeliefNetwork:
         weighted_samples = [item for sublist in weighted_samples for item in sublist]
         # Checks that there are enough samples to produce a systematic resampling
         if len(weighted_samples) < 4:
-            print "create_episodic: not enough samples. Needed at least 4, found " + str(len(weighted_samples))
+            print("create_episodic: not enough samples. Needed at least 4, found " + str(len(weighted_samples)))
             quit()
         # Shuffles the list to prevent the first items to be the most likely to be selected
         shuffle(weighted_samples)

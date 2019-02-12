@@ -1,3 +1,5 @@
+from __future__ import print_function
+
 import csv
 import os.path
 
@@ -41,7 +43,7 @@ class DatasetParser:
         elif isinstance(data, list):
             self.episode_dataset = data
         else:
-            print "[ERROR]. DatasetParser. Invalid data input: " + str(data)
+            print("[ERROR]. DatasetParser. Invalid data input: " + str(data))
             quit(-1)
 
     # Parses a dataset and sums each parameter's occurrence
@@ -99,4 +101,4 @@ class DatasetParser:
     # Prints episodes
     def print_episodes(self):
         for episode in self.episode_dataset:
-            print episode
+            print(episode)

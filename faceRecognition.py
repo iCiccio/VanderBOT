@@ -1,3 +1,4 @@
+from __future__ import print_function
 import os
 
 import cv2
@@ -36,7 +37,7 @@ def model_initialize(model_number, withTreshold=False, threshold=100.0):
         else:
             return cv2.face.LBPHFaceRecognizer_create()
     else:
-        print "[ERROR] Invalid algorithm selected: " + str(ALGORITHM_NUMBER)
+        print("[ERROR] Invalid algorithm selected: " + str(ALGORITHM_NUMBER))
         quit()
 
 
@@ -66,7 +67,7 @@ def recognition_train(data):
             os.remove(MODEL_FILE)
         model.save(MODEL_FILE)
     else:
-        print "[ERROR] recognition_train: input is not a TrainingData instance."
+        print("[ERROR] recognition_train: input is not a TrainingData instance.")
         quit(-1)
 
 
@@ -96,5 +97,5 @@ def recognition_update(new_data):
             os.remove(MODEL_FILE)
         model.save(MODEL_FILE)
     else:
-        print "[ERROR] recognition_update: input is not a TrainingData instance."
+        print("[ERROR] recognition_update: input is not a TrainingData instance.")
         quit(-1)

@@ -1,3 +1,5 @@
+from __future__ import print_function
+
 """
 This class models single actions performed during the Vanderbilt experiment.
 """
@@ -5,7 +7,7 @@ This class models single actions performed during the Vanderbilt experiment.
 class Episode:
     def __init__(self, data=None, time=0):
         if data != [1, 1, 1, 1] and data != [0, 0, 0, 0] and data != [1, 1, 1, 0] and data != [0, 0, 0, 1]:
-            print "[ERROR] Episode. Invalid data input: " + str(data)
+            print("[ERROR] Episode. Invalid data input: " + str(data))
             quit(-1)
         self.raw_data = data
         self.time = time
@@ -21,7 +23,7 @@ class Episode:
         elif self.raw_data == [1, 1, 1, 0]:
             return 'lie_b'
         else:
-            print "[ERROR] Episode.get_label: invalid raw data " + str(self.raw_data)
+            print("[ERROR] Episode.get_label: invalid raw data " + str(self.raw_data))
             quit(-1)
 
     def __str__(self):
@@ -39,6 +41,6 @@ class Episode:
         elif self.raw_data == [1, 1, 1, 0]:
             new_raw_data = [0, 0, 0, 1]
         else:
-            print "[ERROR] Episode.generate_symmetric: invalid raw data " + str(self.raw_data)
+            print("[ERROR] Episode.generate_symmetric: invalid raw data " + str(self.raw_data))
             quit(-1)
         return Episode(new_raw_data, self.time)

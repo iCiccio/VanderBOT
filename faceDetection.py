@@ -1,3 +1,4 @@
+from __future__ import print_function
 import os.path
 
 import cv2
@@ -30,7 +31,7 @@ def facial_detection(img, scale_factor=1.4, min_neighbours=5, single=True, debug
     # Creates a Cascade Classifier and loads the default training data
     haar_xml = "./classifiers/haarcascade_frontalface_default.xml"
     if not os.path.isfile(haar_xml):
-        print "[ERROR] Unable to load the HaarCascade classifier. Verify file: \"" + os.path.relpath(haar_xml) + "\""
+        print("[ERROR] Unable to load the HaarCascade classifier. Verify file: \"" + os.path.relpath(haar_xml) + "\"")
         quit(-1)
     face_cascade = cv2.CascadeClassifier(haar_xml)
 

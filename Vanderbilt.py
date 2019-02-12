@@ -1,3 +1,4 @@
+from __future__ import print_function
 import time
 
 import faceDetection
@@ -23,7 +24,7 @@ class Vanderbilt:
         self.demo_number = demo_number
         if demo_number % 2 != 0:
             # Odd trial number, giving a warning
-            print "[WARNING] An odd number of demonstrations will make Vanderbilt's experiment non-standard!"
+            print("[WARNING] An odd number of demonstrations will make Vanderbilt's experiment non-standard!")
         self.informant_vocabulary = ["left", "right"]
         self.face_frames_captured = 10
         self.mature = mature
@@ -41,7 +42,7 @@ class Vanderbilt:
     # Helps the experimenters to create the experimental environment setup
     def help_setup(self):
         if self.simulation:
-            print "Help not available in simulation"
+            print("Help not available in simulation")
             return
         self.robot.say("I'm going to help you create the experimental setup.")
         self.robot.say("I'm going to stand up.")
@@ -82,7 +83,7 @@ class Vanderbilt:
     # A whole Vanderbilt experiment execution
     def start(self):
         if self.simulation:
-            print "[INFO] Simulation initialized. Please give your inputs surrounded by quotation marks."
+            print("[INFO] Simulation initialized. Please give your inputs surrounded by quotation marks.")
         faceDetection.prepare_workspace("captures")
         self.robot.look_forward()
         if not self.simulation:
@@ -202,7 +203,7 @@ class Vanderbilt:
         # Decision making based on the belief network for that particular informant
         choice = self.robot.beliefs[informer].decision_making(hint)
         if self.simulation:
-            print "Robot decides to look at position: " + str(choice)
+            print("Robot decides to look at position: " + str(choice))
         else:
             self.robot.say("I'm thinking at where to look based on your suggestion...")
             self.robot.animation_service.runTag("think")
