@@ -191,7 +191,7 @@ class Robot:
         for frame in frames:
             self.training_data.images.append(frame)
             self.training_data.labels.append(informant_number)
-            cv2.imwrite("captures\\" + str(informant_number) + "-" + str(count) + ".jpg", frame)
+            cv2.imwrite("captures/" + str(informant_number) + "-" + str(count) + ".jpg", frame)
             count += 1
         self.informants += 1
         self.look_forward()
