@@ -29,6 +29,11 @@ This code runs on Python 2.7. In addition, the following libraries are required:
 
 This software can operate in a simulated virtual environment, provided a camera is connected to the computer at runtime, but for best results a SoftBank robot (Nao or Pepper, for example) of latest generation is recommended.
 
+## Install Libraries from pip
+```
+sudo pip install numpy opencv-python opencv-contrib-python --user
+```
+
 # Experimental Setup
 
 This module has been written for a SoftBank Pepper robot.
